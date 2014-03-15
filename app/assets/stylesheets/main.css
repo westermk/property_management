@@ -88,3 +88,16 @@
 	border-bottom-left-radius:40px 40px;
 	border-bottom-right-radius:40px 40px;
 }
+
+#notice
+{
+	color: green;
+}
+
+#error 
+{
+	color: red;
+	font-size: 20px;
+}
+}
+

@@ -4,6 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user
+  
+  rescue_from CanCan::AccessDenied do |ex|
+    flash[:error] = "Access Denied"
+    redirect_to root_url
+  end
+  
+  before_filter do
+    resource = controller_name.singularize.to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
+
 
   private
 

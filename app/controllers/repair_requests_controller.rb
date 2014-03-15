@@ -1,5 +1,7 @@
 class RepairRequestsController < ApplicationController
   before_action :set_repair_request, only: [:show, :edit, :update, :destroy]
+  
+  load_and_authorize_resource #convention method from cancan
 
   # GET /repair_requests
   # GET /repair_requests.json
@@ -40,6 +42,9 @@ class RepairRequestsController < ApplicationController
   # PATCH/PUT /repair_requests/1
   # PATCH/PUT /repair_requests/1.json
   def update
+    
+    
+    
     respond_to do |format|
       if @repair_request.update(repair_request_params)
         format.html { redirect_to @repair_request, notice: 'Repair request was successfully updated.' }
@@ -66,9 +71,14 @@ class RepairRequestsController < ApplicationController
     def set_repair_request
       @repair_request = RepairRequest.find(params[:id])
     end
+    
+    def set_submitter_id
+      
+        
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repair_request_params
-      params.require(:repair_request).permit(:open_date, :close_date, :request_details, :request_response, :submitter, :responder_id, :submitter_id)
+      params.require(:repair_request).permit(:open_date, :close_date, :request_details, :request_response, :submitter_id, :responder_id, {:role_ids =>[]})
     end
 end

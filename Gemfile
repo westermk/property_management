@@ -5,6 +5,11 @@ gem'authlogic'
 
 gem 'scrypt'
 
+#Add cancan
+
+gem 'cancan'
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 

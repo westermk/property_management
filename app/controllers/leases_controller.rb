@@ -1,5 +1,7 @@
 class LeasesController < ApplicationController
   before_action :set_lease, only: [:show, :edit, :update, :destroy]
+  
+  load_and_authorize_resource #convention method from cancan
 
   # GET /leases
   # GET /leases.json

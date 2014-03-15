@@ -22,7 +22,7 @@
         <td><%= repair_request.close_date %></td>
         <td><%= repair_request.request_details %></td>
         <td><%= repair_request.request_response %></td>
-        <td><%= repair_request.submitter %></td>
+        <td><%= repair_request.submitter_id %></td>
         <td><%= repair_request.responder_id %></td>
         <td><%= link_to 'Show', repair_request %></td>
         <td><%= link_to 'Edit', edit_repair_request_path(repair_request) %></td>
@@ -34,4 +34,6 @@
 
 <br>
 
-<%= link_to 'New Repair request', new_repair_request_path %>
+<% if current_user.has_role? :renter %>
+	<%= link_to 'New Repair request', new_repair_request_path %>
+<% end %>
