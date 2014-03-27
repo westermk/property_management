@@ -27,6 +27,8 @@ class LeasesController < ApplicationController
   # POST /leases.json
   def create
     @lease = Lease.new(lease_params)
+    
+    
 
     respond_to do |format|
       if @lease.save
@@ -42,6 +44,9 @@ class LeasesController < ApplicationController
   # PATCH/PUT /leases/1
   # PATCH/PUT /leases/1.json
   def update
+    
+    
+    
     respond_to do |format|
       if @lease.update(lease_params)
         format.html { redirect_to @lease, notice: 'Lease was successfully updated.' }
