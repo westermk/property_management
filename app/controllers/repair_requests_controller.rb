@@ -48,7 +48,7 @@ class RepairRequestsController < ApplicationController
   def update
     
     if current_user.has_role? :manager
-      @repair_request.responder_id = current_user.id
+      @repair_request.responder = current_user
     end
     
     respond_to do |format|
