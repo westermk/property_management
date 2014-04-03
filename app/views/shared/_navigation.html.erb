@@ -2,13 +2,27 @@
 <ul>
   <li><%= link_to('Home', root_url) %></li>
   
-      <% if current_user %>
-      
-		<li><%= link_to "Repair Request", repair_requests_path %></li>
-		<li><%= link_to "Lease", leases_path %></li>
-        <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
-        <li><%= link_to "Logout", logout_path %></li>
-
+  	<!-- Links for the managers -->
+    
+    <% if current_user %>
+    	<!-- Links for the managers -->
+    	<% if current_user.has_role? :manager %>
+    	
+	      	<li><%= link_to "Payments", payments_path %></li>
+			<li><%= link_to "Repair Request", repair_requests_path %></li>
+			<li><%= link_to "Lease", leases_path %></li>
+			<li><%= link_to "Property", properties_path %></li>
+			<li><%= link_to "Unit", units_path %></li>
+	        <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+	        <li><%= link_to "Logout", logout_path %></li>
+		
+		<% elsif current_user.has_role? :renter %>
+		
+			<li><%= link_to "Payments", payments_path %></li>
+			<li><%= link_to "Repair Request", repair_requests_path %></li>
+	        <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+	        <li><%= link_to "Logout", logout_path %></li>
+        <% end %>
     <% else %>
 
         <li><%= link_to "Register", new_user_path %></li>

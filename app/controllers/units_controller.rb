@@ -4,7 +4,12 @@ class UnitsController < ApplicationController
   # GET /units
   # GET /units.json
   def index
-    @units = Unit.all
+    if current_user.has_role? :manager
+      @units = Unit.all
+    else
+      redirect_to @user, alert: "You cannot access this page"
+    end
+    
   end
 
   # GET /units/1
@@ -69,6 +74,6 @@ class UnitsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def unit_params
-      params.require(:unit).permit(:name, :square_feet)
+      params.require(:unit).permit(:name, :square_feet, :property_id)
     end
 end

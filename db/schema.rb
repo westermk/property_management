@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311025619) do
+ActiveRecord::Schema.define(version: 20140403023927) do
 
   create_table "leases", force: true do |t|
     t.date     "start_date"
@@ -19,6 +19,18 @@ ActiveRecord::Schema.define(version: 20140311025619) do
     t.integer  "rent"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "unit_id"
+  end
+
+  create_table "payments", force: true do |t|
+    t.integer  "amount"
+    t.string   "ip_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "card_expires_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "properties", force: true do |t|
@@ -41,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140311025619) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "submitter_id"
+    t.integer  "user_id"
   end
 
   create_table "roles", force: true do |t|
@@ -59,6 +72,7 @@ ActiveRecord::Schema.define(version: 20140311025619) do
     t.integer  "square_feet"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "property_id"
   end
 
   create_table "users", force: true do |t|
@@ -69,6 +83,7 @@ ActiveRecord::Schema.define(version: 20140311025619) do
     t.string   "persistence_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "lease_id"
   end
 
 end

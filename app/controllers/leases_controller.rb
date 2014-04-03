@@ -6,7 +6,11 @@ class LeasesController < ApplicationController
   # GET /leases
   # GET /leases.json
   def index
+    if current_user.has_role? :manager
     @leases = Lease.all
+    else
+      
+    end
   end
 
   # GET /leases/1
@@ -76,6 +80,6 @@ class LeasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lease_params
-      params.require(:lease).permit(:start_date, :end_date, :rent)
+      params.require(:lease).permit(:start_date, :end_date, :rent, :unit_id)
     end
 end

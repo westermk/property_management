@@ -19,6 +19,12 @@
     <%= f.label :square_feet %><br>
     <%= f.number_field :square_feet %>
   </div>
+  	
+  <div class="field">
+  	<%= f.label :property_id %><br>
+	<%= f.collection_select :property_id, Property.all.collect, :id, :name, {:include_blank => "Please Select"} %>
+  </div>
+	
   <div class="actions">
     <%= f.submit %>
   </div>
